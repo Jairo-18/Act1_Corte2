@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import image from './assets/bg-cafe.jpg';
+import StarFillSVG from './assets/Star_fill.svg';
+import StarSVG from './assets/Star.svg';
 
 function App() {
-
   const [colorBotones, setColorBotones] = useState({ boton2: '#6e7c80', boton3: '#1B1D1F' });
   const alternarColoresBotones = () => {
     setColorBotones({ boton2: colorBotones.boton3, boton3: colorBotones.boton2 });
+    setShowAvailableOnly(!showAvailableOnly)
   };
+
   const [productos, setProductos] = useState([]);
+  const [showAvailableOnly, setShowAvailableOnly] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +30,12 @@ function App() {
 
     fetchData();
   }, []);
+  const filteredProductos = () => {
+    const filteredProductos = showAvailableOnly ? productos.filter(producto => producto.available) : productos;
+
+    return filteredProductos;
+  }
+
 
 
   return (
@@ -61,23 +71,29 @@ function App() {
             </div>
           </div>
           <div className='quinta_caja'>
-            {productos.map(producto => (
+            {filteredProductos().map(producto => (
               <div key={producto.id} className='productos'>
-                <img src={producto.image} className='imagen_producto' />
-                {producto.popular && <p className='popular_producto'>{producto.popular} Popular</p>}
+                <div className='contenedor_imagen'>
+                  <img src={producto.image} className='imagen_producto' />
+                  <div className='texto_fondo'>
+                    {producto.popular && <span className='popular_producto'>{producto.popular} Popular</span>}
+                  </div>
+                </div>
                 <div className='flexs1'>
                   <span className='nombre_producto'>{producto.name}</span>
                   <button className='precio_producto'>{producto.price}</button>
                 </div>
                 <div className='flexs2'>
-                  {producto.rating >1 ? (
-                    <img src="../assets/Star_fill.svg" className='estrella1'/>
+                  {producto.rating > 1 ? (
+                    <img src={StarFillSVG} className='estrella1' />
                   ) : (
-                    <img src="../assets/Star.svg" className='estrella2'/>
+                    <img src={StarSVG} className='estrella2' />
                   )}
                   <p className='puntaje'>{producto.rating}</p>
                   {producto.votes ? <p className='votos'>({producto.votes} votes)</p> : <p className='votos'>No ratings</p>}
-                  <p className='available'>{!producto.available ? 'Sould out' : ' '}</p>
+                  {producto.available ? null : (
+                    <p className='available'>Sold out</p>
+                  )}
                 </div>
               </div>
             ))}

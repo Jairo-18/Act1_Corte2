@@ -10,59 +10,63 @@
   width: 100%;
   will-change: filter;
   transition: filter 300ms;
-  position: relative; /* Asegúrate de que la imagen tenga posición relativa */
-  z-index: 1; /* Ajusta el z-index para que la imagen esté detrás del texto */
+  position: relative; 
+  z-index: 1; 
 }
 
 .productos {
-  margin-bottom: 10px; /* Espacio entre los elementos */
-  background-color:#1B1D1F; /* Color de fondo del producto */
-  height: auto;
-  width: auto;
+  width: calc(33.33% - 20px); 
+  margin-bottom: 20px; 
+  box-sizing: border-box; 
+  margin-right: 20px;
 }
 
 .nombre_producto {
-  font-size: 10px; /* Ajusta el tamaño del nombre del producto */
+  font-size: 10px;
   font-family: 'Arial';
   color: #ffffff;
 }
 
 .descripcion_producto {
-  font-size: 12px; /* Ajusta el tamaño de la descripción */
+  font-size: 12px; 
   color: #666;
   margin-bottom: 5px;
 
 }
 
 .popular_producto{
-  font-size: 8px; /* Ajusta el tamaño del precio */
+  font-size: 6px;
   font-family: 'Arial';
   color: #000000;
-  background-color: #F6C768; /* Color de fondo del botón */
-  border-radius: 10px; /* Añade bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  padding: 4px 8px;
-  z-index: 1;
+  background-color: #F6C768; 
+  border-radius: 15px;
+  cursor: pointer;
+  z-index: 2;
+  margin: 0;
+  border: none;
+  padding: 5px 8px 5px 8px;
+}
+
+.texto_fondo {
+  position: absolute; /* Posiciona el texto de manera absoluta */
+  top: 0; /* Posiciona el texto en la parte superior */
+  left: 0; /* Posiciona el texto en la parte izquierda */
+  padding: 1em; /* Espaciado interno utilizando unidades relativas */
+  border-radius: 0.5em; /* Bordes redondeados con unidades relativas */
+  text-align: left; /* Alineación del texto a la izquierda */
+}
+
+.contenedor_imagen {
+  position: relative; /* Necesario para posicionar el texto de manera relativa */
+  width: 100%; /* Ancho completo del contenedor */
 }
 
 .available{
-  font-size: 8px; /* Ajusta el tamaño del nombre del producto */
+  font-size: 8px;
   font-family: 'Arial';
   color: #ED735D;
-}
 
-.estrella1{
-  background-image: url('../src/assets/Star_fill.svg');
-  width: auto;
-  height: auto;
-  margin-right: 2px;
-}
-
-.estrella2{
-  background-image: url('../src/assets/Star.svg');
-  width: auto;
-  height: auto;
-  margin-right: 2px;
+  right: 0; /* Posiciona el texto en la parte derecha */
 }
 
 .flexs1{
@@ -84,11 +88,10 @@
 }
 .imagen_titulo{
   background-image: url('../src/assets/vector.svg');
-  background-size: contain; /* Ajusta el tamaño de la imagen para que quepa completamente dentro del contenedor */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-position-x: 360px; /* Centra la imagen dentro del contenedor */
-  background-position-y: -1px;
-  width: 200px; /* Ancho del contenedor */
+  background-size: contain; 
+  background-repeat: no-repeat; 
+  background-position-x: 60%;
+  width: 200px; 
   height: 200px;
 }
 
@@ -98,18 +101,18 @@
 }
 
 .precio_producto {
-  font-size: 10px; /* Ajusta el tamaño del precio */
+  font-size: 10px; 
   font-family: 'Arial';
   color: #000000;
-  background-color: #BEE3CC; /* Color de fondo del botón */
-  border-radius: 5px; /* Añade bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  background-color: #BEE3CC; 
+  border-radius: 5px; 
+  cursor: pointer; 
  padding: 4px 8px;
 }
 
 .imagen_producto {
-  width: 210px; /* Cambia el ancho según lo necesites */
-  height: 140px; /* Cambia la altura según lo necesites */
+  width: 100%; 
+  height: auto; 
   border-radius: 15px;
 }
 
@@ -175,11 +178,11 @@
 .quinta_caja {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .boton1 {
@@ -195,7 +198,7 @@
   font-size: 8px;
   color: #ffffff;
   font-family: 'Arial';
-  margin-right: 2px;
+  margin-right: 10px;
 }
 
 .boton3 {
@@ -235,6 +238,49 @@
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
+  }
+  .nombre_producto {
+    font-size: calc(10px + 4px);
+  }
+  
+  .descripcion_producto {
+    font-size: calc(12px + 4px);
+  }
+  
+  .popular_producto {
+    font-size: calc(6px + 4px);
+  }
+  
+  .available {
+    font-size: calc(8px + 4px);
+  }
+  
+  .precio_producto {
+    font-size: calc(10px + 4px);
+  }
+  
+  .votos {
+    font-size: calc(8px + 4px);
+  }
+  
+  .titulo1 {
+    font-size: calc(16px + 4px);
+  }
+  
+  .texto1 {
+    font-size: calc(8px + 4px);
+  }
+
+  .boton2 {
+    font-size: calc(8px + 4px);
+  }
+
+  .boton3 {
+    font-size: calc(8px + 4px);
+  }
+
+  .popular_producto {
+    font-size: calc(8px + 4px);
   }
 }
 
